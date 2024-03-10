@@ -1,0 +1,12 @@
+name: country
+visualization:
+  options:
+    columns: '[{"type":"field","fieldName":"@timestamp","format":"datetime","width":"content"},{"type":"field","fieldName":"@rawstring","format":"logline"}]'
+    newestAtBottom: 'true'
+    showOnlyFirstLine: 'false'
+  type: list-view
+$schema: https://schemas.humio.com/query/v0.4.0
+timeInterval:
+  isLive: false
+  start: 1d
+queryString: match(file="logscale/utils/country.csv", column="country_code", strict=false, field=?{ip=ip.country})
